@@ -1,7 +1,7 @@
 streamlit
 pandas
-scikit-learn
-xgboost
-shap
-joblib
+scikit-learn==1.6.1
+xgboost==3.4.1
+shap==0.52.0
+joblib==1.6.0
 reportlab
