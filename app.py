@@ -2202,7 +2202,8 @@ def display_assessment(
     policy_reference,
     customer_reference,
     assessment_date,
-    claim_data
+    claim_data,
+    source="main"
 ):
 
     if risk_level == "HIGH":
@@ -2423,25 +2424,23 @@ def display_assessment(
             )
         )
     )
+st.download_button(
+    "⬇️ Download PDF Assessment",
 
-    st.download_button(
+    data=pdf,
 
-        "⬇️ Download PDF Assessment",
+    file_name=(
+        f"InsureGuard_"
+        f"{claim_reference if claim_reference else report_id}"
+        "_Assessment.pdf"
+    ),
 
-        data=pdf,
+    mime="application/pdf",
 
-        file_name=(
-            f"InsureGuard_"
-            f"{claim_reference if claim_reference else report_id}"
-            "_Assessment.pdf"
-        ),
+    use_container_width=True,
 
-        mime=(
-            "application/pdf"
-        ),
-
-        use_container_width=True
-    )
+    key=f"download_{source}_{report_id}"
+)
 
 # ============================================================
 # LOGGED-IN TOP BAR
@@ -3028,7 +3027,8 @@ with tab_new:
 
             claim_data=(
                 claim_data
-            )
+            ),
+          source="new"
         )
 
 # ============================================================
@@ -3382,7 +3382,8 @@ with tab_history:
 
                         claim_data=(
                             saved_claim_data
-                        )
+                        ),
+                        source="history"
                     )
 
 # ============================================================
